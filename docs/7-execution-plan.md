@@ -47,10 +47,10 @@ DB-03         BE-03               FE-03
 **목표**: 개발 환경에서 PostgreSQL 17 인스턴스를 준비하고 애플리케이션용 데이터베이스와 유저를 생성한다.
 
 **완료 조건**
-- [ ] PostgreSQL 17 서비스가 로컬에서 정상 실행됨
-- [ ] `todolist` 데이터베이스 생성 완료
-- [ ] 전용 DB 유저 생성 및 권한 부여 완료
-- [ ] `psql -U <user> -d todolist` 접속 성공 확인
+- [x] PostgreSQL 17 서비스가 로컬에서 정상 실행됨
+- [x] `todolist` 데이터베이스 생성 완료
+- [x] 전용 DB 유저 생성 및 권한 부여 완료
+- [x] `psql -U <user> -d todolist` 접속 성공 확인
 
 **의존성**
 - 없음 (시작점)
@@ -62,14 +62,14 @@ DB-03         BE-03               FE-03
 **목표**: 테이블 생성을 단계별 SQL 파일로 분리하여 `backend/migrations/`에 저장한다.
 
 **완료 조건**
-- [ ] `001_create_users.sql` — `theme_type`, `locale_type` Enum + `user` 테이블 + `updated_at` 트리거
-- [ ] `002_create_categories.sql` — `category` 테이블 + `user_id` 인덱스 + 기본 카테고리 자동 생성 트리거
-- [ ] `003_create_todos.sql` — `todo` 테이블 + 인덱스 7개
-- [ ] 각 파일 상단에 롤백 SQL(`DROP`) 주석 포함
-- [ ] `database/schema.sql`과 DDL 내용 일치 확인
+- [x] `001_create_users.sql` — `theme_type`, `locale_type` Enum + `user` 테이블 + `updated_at` 트리거
+- [x] `002_create_categories.sql` — `category` 테이블 + `user_id` 인덱스 + 기본 카테고리 자동 생성 트리거
+- [x] `003_create_todos.sql` — `todo` 테이블 + 인덱스 7개
+- [x] 각 파일 상단에 롤백 SQL(`DROP`) 주석 포함
+- [x] `database/schema.sql`과 DDL 내용 일치 확인
 
 **의존성**
-- [ ] DB-01 완료
+- [x] DB-01 완료
 
 ---
 
@@ -78,15 +78,15 @@ DB-03         BE-03               FE-03
 **목표**: 마이그레이션 파일을 순서대로 실행하고 스키마가 ERD와 일치하는지 검증한다.
 
 **완료 조건**
-- [ ] `psql -f 001_create_users.sql` 오류 없이 실행
-- [ ] `psql -f 002_create_categories.sql` 오류 없이 실행
-- [ ] `psql -f 003_create_todos.sql` 오류 없이 실행
-- [ ] `\d user`, `\d category`, `\d todo` 로 컬럼·제약 조건 일치 확인
-- [ ] 테스트 사용자 INSERT 후 기본 카테고리 자동 생성 트리거 동작 확인
-- [ ] `updated_at` 트리거: UPDATE 후 값 갱신 확인
+- [x] `psql -f 001_create_users.sql` 오류 없이 실행
+- [x] `psql -f 002_create_categories.sql` 오류 없이 실행
+- [x] `psql -f 003_create_todos.sql` 오류 없이 실행
+- [x] `\d user`, `\d category`, `\d todo` 로 컬럼·제약 조건 일치 확인
+- [x] 테스트 사용자 INSERT 후 기본 카테고리 자동 생성 트리거 동작 확인
+- [x] `updated_at` 트리거: UPDATE 후 값 갱신 확인
 
 **의존성**
-- [ ] DB-02 완료
+- [x] DB-02 완료
 
 ---
 
