@@ -88,21 +88,21 @@ describe('PATCH /api/v1/users/me/settings', () => {
 
 // ─── PUT /api/v1/auth/me (BE-09) ──────────────────────────────────────────────
 describe('PUT /api/v1/auth/me', () => {
-  it('이름 변경 → 200', async () => {
+  it('이름 변경 → 200 (current_password 불요)', async () => {
     const res = await request(app)
       .put('/api/v1/auth/me')
       .set('Authorization', `Bearer ${token}`)
-      .send({ currentPassword: password, name: '변경된이름' });
+      .send({ name: '변경된이름' });
 
     expect(res.status).toBe(200);
     expect(res.body.data.name).toBe('변경된이름');
   });
 
-  it('현재 비밀번호 불일치 → 401 INVALID_CREDENTIALS', async () => {
+  it('비밀번호 변경 시 current_password 불일치 → 401 INVALID_CREDENTIALS', async () => {
     const res = await request(app)
       .put('/api/v1/auth/me')
       .set('Authorization', `Bearer ${token}`)
-      .send({ currentPassword: 'WrongPass1!', name: '변경시도' });
+      .send({ current_password: 'WrongPass1!', new_password: 'NewPass9999' });
 
     expect(res.status).toBe(401);
     expect(res.body.error.code).toBe('INVALID_CREDENTIALS');
@@ -112,7 +112,7 @@ describe('PUT /api/v1/auth/me', () => {
     const res = await request(app)
       .put('/api/v1/auth/me')
       .set('Authorization', `Bearer ${token}`)
-      .send({ currentPassword: password });
+      .send({});
     expect(res.status).toBe(400);
   });
 
@@ -121,7 +121,7 @@ describe('PUT /api/v1/auth/me', () => {
     const res = await request(app)
       .put('/api/v1/auth/me')
       .set('Authorization', `Bearer ${token}`)
-      .send({ currentPassword: password, newPassword: newPw });
+      .send({ current_password: password, new_password: newPw });
     expect(res.status).toBe(200);
 
     // 새 비밀번호로 로그인

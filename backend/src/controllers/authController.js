@@ -71,18 +71,15 @@ const NAME_RE = /^.{1,50}$/;
 const PW_RE_LEN = 8;
 
 async function updateMe(req, res, next) {
-  const { currentPassword, name, newPassword } = req.body;
+  // swagger 스펙 snake_case 필드 사용: current_password, new_password
+  const { current_password, name, new_password } = req.body;
   try {
-    if (!name && !newPassword) {
+    if (!name && !new_password) {
       return next(createError('VALIDATION_ERROR', '변경할 정보를 입력해주세요.', 400));
     }
-    if (!currentPassword) {
-      return next(createError('VALIDATION_ERROR', '현재 비밀번호를 입력해주세요.', 400));
-    }
-    const user = await userQueries.findByEmail(req.user.email);
-    const match = await bcrypt.compare(currentPassword, user.password);
-    if (!match) {
-      return next(createError('INVALID_CREDENTIALS', '현재 비밀번호가 올바르지 않습니다.', 401));
+    // 비밀번호 변경 시에만 current_password 필수 (이름만 변경 시 불요)
+    if (new_password && !current_password) {
+      return next(createError('VALIDATION_ERROR', '비밀번호 변경 시 현재 비밀번호를 입력해주세요.', 400));
     }
     const data = {};
     if (name !== undefined) {
@@ -92,12 +89,17 @@ async function updateMe(req, res, next) {
       }
       data.name = trimmed;
     }
-    if (newPassword !== undefined) {
-      if (newPassword.length < PW_RE_LEN || !/[a-zA-Z]/.test(newPassword) || !/[0-9]/.test(newPassword)) {
+    if (new_password !== undefined) {
+      const user = await userQueries.findByEmail(req.user.email);
+      const match = await bcrypt.compare(current_password, user.password);
+      if (!match) {
+        return next(createError('INVALID_CREDENTIALS', '현재 비밀번호가 올바르지 않습니다.', 401));
+      }
+      if (new_password.length < PW_RE_LEN || !/[a-zA-Z]/.test(new_password) || !/[0-9]/.test(new_password)) {
         return next(createError('VALIDATION_ERROR', '비밀번호는 8자 이상, 영문과 숫자를 포함해야 합니다.', 400));
       }
       const rounds = parseInt(process.env.BCRYPT_SALT_ROUNDS, 10) || 12;
-      data.password = await bcrypt.hash(newPassword, rounds);
+      data.password = await bcrypt.hash(new_password, rounds);
     }
     const updated = await userQueries.updateUser(req.user.userId, data);
     logger.info('사용자 정보 수정: %s', req.user.userId);

@@ -79,6 +79,7 @@ async function update(req, res, next) {
     if (category_id !== undefined) data.category_id = category_id;
     if (start_date !== undefined) data.start_date = start_date;
     if (end_date !== undefined) data.end_date = end_date;
+    if (req.body.is_done !== undefined) data.is_done = req.body.is_done;
 
     const updated = await todoQueries.updateTodo(id, data);
     return sendSuccess(res, withStatus(updated));

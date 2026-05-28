@@ -388,7 +388,7 @@
                     "value": {
                       "error": {
                         "code": "VALIDATION_ERROR",
-                        "message": "비밀번호는 8자 이상, 영문과 숫자를 포함해야 합니다."
+                        "message": "비밀번호는 최소 8자 이상이며 영문과 숫자를 포함해야 합니다."
                       }
                     }
                   },
@@ -610,7 +610,7 @@
                   },
                   "current_password": {
                     "type": "string",
-                    "description": "현재 비밀번호 (비밀번호 변경 시에만 필수 (이름만 변경 시 불요))",
+                    "description": "현재 비밀번호 (비밀번호 변경 시 필수)",
                     "example": "oldpassword123"
                   },
                   "new_password": {
@@ -974,7 +974,7 @@
                     "value": {
                       "error": {
                         "code": "VALIDATION_ERROR",
-                        "message": "종료 날짜는 시작 날짜보다 같거나 이후여야 합니다."
+                        "message": "종료일은 시작일 이상이어야 합니다."
                       }
                     }
                   }
@@ -984,9 +984,6 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
           },
           "500": {
             "$ref": "#/components/responses/InternalError"
@@ -998,7 +995,7 @@
       "get": {
         "tags": ["Todos"],
         "summary": "할일 상세 조회 (UC-12)",
-        "description": "특정 할일의 상세 정보를 조회합니다. 타인의 할일 조회 시 403이 반환됩니다. status 파생값이 포함됩니다. 존재하지 않거나 타인 소유인 경우 403 FORBIDDEN을 반환합니다 (리소스 존재 여부 노출 방지).",
+        "description": "특정 할일의 상세 정보를 조회합니다. 타인의 할일 조회 시 403이 반환됩니다. status 파생값이 포함됩니다.",
         "operationId": "getOne",
         "security": [
           {
@@ -1067,7 +1064,7 @@
       "put": {
         "tags": ["Todos"],
         "summary": "할일 수정 (UC-13)",
-        "description": "할일의 제목, 설명, 카테고리, 날짜, 완료 여부를 수정합니다. 날짜 유효성(end_date >= start_date)이 재검증됩니다. 타인의 할일 수정 시 403이 반환됩니다. 존재하지 않거나 타인 소유인 경우 403 FORBIDDEN을 반환합니다 (리소스 존재 여부 노출 방지).",
+        "description": "할일의 제목, 설명, 카테고리, 날짜, 완료 여부를 수정합니다. 날짜 유효성(end_date >= start_date)이 재검증됩니다. 타인의 할일 수정 시 403이 반환됩니다.",
         "operationId": "update",
         "security": [
           {
@@ -1179,7 +1176,7 @@
                 "example": {
                   "error": {
                     "code": "VALIDATION_ERROR",
-                    "message": "종료 날짜는 시작 날짜보다 같거나 이후여야 합니다."
+                    "message": "종료일은 시작일 이상이어야 합니다."
                   }
                 }
               }
@@ -1202,7 +1199,7 @@
       "delete": {
         "tags": ["Todos"],
         "summary": "할일 삭제 (UC-15)",
-        "description": "특정 할일을 삭제합니다. 타인의 할일 삭제 시 403이 반환됩니다. 존재하지 않거나 타인 소유인 경우 403 FORBIDDEN을 반환합니다 (리소스 존재 여부 노출 방지).",
+        "description": "특정 할일을 삭제합니다. 타인의 할일 삭제 시 403이 반환됩니다.",
         "operationId": "remove",
         "security": [
           {
@@ -1245,7 +1242,7 @@
       "patch": {
         "tags": ["Todos"],
         "summary": "할일 완료 처리 (UC-14)",
-        "description": "할일의 is_done을 true로 변경합니다. 요청 바디가 필요 없는 단순 PATCH입니다. 처리 후 status는 즉시 DONE으로 반환됩니다. 타인의 할일 완료 처리 시 403이 반환됩니다. 존재하지 않거나 타인 소유인 경우 403 FORBIDDEN을 반환합니다 (리소스 존재 여부 노출 방지).",
+        "description": "할일의 is_done을 true로 변경합니다. 요청 바디가 필요 없는 단순 PATCH입니다. 처리 후 status는 즉시 DONE으로 반환됩니다. 타인의 할일 완료 처리 시 403이 반환됩니다.",
         "operationId": "toggleDone",
         "security": [
           {
@@ -1463,7 +1460,7 @@
                 "example": {
                   "error": {
                     "code": "DUPLICATE_CATEGORY",
-                    "message": "이미 사용 중인 카테고리 이름입니다."
+                    "message": "이미 동일한 이름의 카테고리가 존재합니다."
                   }
                 }
               }
@@ -1479,7 +1476,7 @@
       "put": {
         "tags": ["Categories"],
         "summary": "카테고리 수정 (UC-08) [Should Have]",
-        "description": "카테고리 이름을 수정합니다. is_default=true인 기본 카테고리는 수정할 수 없으며 400 VALIDATION_ERROR가 반환됩니다. 타인의 카테고리 수정 시 403이 반환됩니다. 존재하지 않거나 타인 소유인 경우 403 FORBIDDEN을 반환합니다 (리소스 존재 여부 노출 방지).",
+        "description": "카테고리 이름을 수정합니다. is_default=true인 기본 카테고리는 수정할 수 없으며 400 VALIDATION_ERROR가 반환됩니다. 타인의 카테고리 수정 시 403이 반환됩니다.",
         "operationId": "update",
         "security": [
           {
@@ -1595,7 +1592,7 @@
                 "example": {
                   "error": {
                     "code": "DUPLICATE_CATEGORY",
-                    "message": "이미 사용 중인 카테고리 이름입니다."
+                    "message": "이미 동일한 이름의 카테고리가 존재합니다."
                   }
                 }
               }
@@ -1609,7 +1606,7 @@
       "delete": {
         "tags": ["Categories"],
         "summary": "카테고리 삭제 (UC-09) [Should Have]",
-        "description": "카테고리를 삭제합니다. is_default=true인 기본 카테고리는 삭제할 수 없으며 400 VALIDATION_ERROR가 반환됩니다. 일반 카테고리 삭제 시 해당 카테고리에 소속된 모든 할일의 category_id가 기본 카테고리로 자동 이관됩니다(트랜잭션 처리). 타인의 카테고리 삭제 시 403이 반환됩니다. 존재하지 않거나 타인 소유인 경우 403 FORBIDDEN을 반환합니다 (리소스 존재 여부 노출 방지).",
+        "description": "카테고리를 삭제합니다. is_default=true인 기본 카테고리는 삭제할 수 없으며 400 DEFAULT_CATEGORY_DELETE가 반환됩니다. 일반 카테고리 삭제 시 해당 카테고리에 소속된 모든 할일의 category_id가 기본 카테고리로 자동 이관됩니다(트랜잭션 처리). 타인의 카테고리 삭제 시 403이 반환됩니다.",
         "operationId": "remove",
         "security": [
           {
@@ -1642,7 +1639,7 @@
                 },
                 "example": {
                   "error": {
-                    "code": "VALIDATION_ERROR",
+                    "code": "DEFAULT_CATEGORY_DELETE",
                     "message": "기본 카테고리는 삭제할 수 없습니다."
                   }
                 }
@@ -1763,7 +1760,7 @@
                     "value": {
                       "error": {
                         "code": "VALIDATION_ERROR",
-                        "message": "테마는 light, dark 중 하나여야 합니다."
+                        "message": "theme은 'light' 또는 'dark'여야 합니다."
                       }
                     }
                   },
@@ -1772,7 +1769,7 @@
                     "value": {
                       "error": {
                         "code": "VALIDATION_ERROR",
-                        "message": "언어는 ko, en 중 하나여야 합니다."
+                        "message": "locale은 'ko' 또는 'en'이어야 합니다."
                       }
                     }
                   },

@@ -118,9 +118,9 @@
 
 | 필터 파라미터 | 값 | 동작 |
 |--------------|-----|------|
-| `category_id` | UUID | 해당 카테고리 소속 할일만 반환 |
+| `categoryId` | UUID | 해당 카테고리 소속 할일만 반환 |
 | `status` | NOT_STARTED / IN_PROGRESS / DONE / OVERDUE | 해당 파생 상태 할일만 반환 |
-| 복합 필터 | category_id + status | AND 조건으로 교차 필터링 |
+| 복합 필터 | categoryId + status | AND 조건으로 교차 필터링 |
 
 ---
 
