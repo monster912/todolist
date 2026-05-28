@@ -97,13 +97,13 @@ DB-03         BE-03               FE-03
 **목표**: `backend/` 디렉토리를 생성하고 Node.js + Express 프로젝트 기반을 구성한다.
 
 **완료 조건**
-- [ ] `backend/package.json` 생성 (`express`, `pg`, `bcrypt`, `jsonwebtoken`, `cors`, `dotenv` 의존성 포함)
-- [ ] `devDependencies`: `jest`, `supertest`, `eslint`, `nodemon`
-- [ ] `backend/.env.example` 작성 (PORT, JWT_SECRET, JWT_EXPIRES_IN, DB_*, BCRYPT_SALT_ROUNDS, CORS_ORIGIN)
-- [ ] `backend/.env` 로컬 값 설정 (`.gitignore` 확인)
-- [ ] `backend/src/app.js` — Express 앱 기본 구성 (json 파서, cors, 라우터 마운트 placeholder)
-- [ ] `backend/server.js` — `app.js` import 후 `listen(PORT)`
-- [ ] `node server.js` 실행 시 `PORT` 포트에서 서버 기동 확인
+- [x] `backend/package.json` 생성 (`express`, `pg`, `bcrypt`, `jsonwebtoken`, `cors`, `dotenv` 의존성 포함)
+- [x] `devDependencies`: `jest`, `supertest`, `eslint`, `nodemon`
+- [x] `backend/.env.example` 작성 (PORT, JWT_SECRET, JWT_EXPIRES_IN, DB_*, BCRYPT_SALT_ROUNDS, CORS_ORIGIN)
+- [x] `backend/.env` 로컬 값 설정 (`.gitignore` 확인)
+- [x] `backend/src/app.js` — Express 앱 기본 구성 (json 파서, cors, 라우터 마운트 placeholder)
+- [x] `backend/server.js` — `app.js` import 후 `listen(PORT)`
+- [x] `node server.js` 실행 시 `PORT` 포트에서 서버 기동 확인
 
 **의존성**
 - 없음
@@ -115,13 +115,13 @@ DB-03         BE-03               FE-03
 **목표**: `pg.Pool` 인스턴스를 생성하고 모든 쿼리 계층에서 공유한다.
 
 **완료 조건**
-- [ ] `backend/src/db/pool.js` 작성 — 환경변수 기반 Pool 설정 (max, idleTimeout, connectionTimeout)
-- [ ] `pool.query('SELECT 1')` 성공 확인 (서버 기동 시 로그)
-- [ ] pool이 `db/` 계층 외부로 직접 노출되지 않음
+- [x] `backend/src/db/pool.js` 작성 — 환경변수 기반 Pool 설정 (max, idleTimeout, connectionTimeout)
+- [x] `pool.query('SELECT 1')` 성공 확인 (서버 기동 시 로그)
+- [x] pool이 `db/` 계층 외부로 직접 노출되지 않음
 
 **의존성**
-- [ ] BE-01 완료
-- [ ] DB-03 완료
+- [x] BE-01 완료
+- [x] DB-03 완료
 
 ---
 
@@ -130,14 +130,14 @@ DB-03         BE-03               FE-03
 **목표**: 전 계층에서 공유하는 순수 유틸 함수를 `utils/`에 구현한다.
 
 **완료 조건**
-- [ ] `jwtUtils.js` — `signToken({ userId, email })`, `verifyToken(token)` 구현
-- [ ] `statusUtils.js` — `computeTodoStatus(todo, now)` 구현 (4-state: NOT_STARTED/IN_PROGRESS/DONE/OVERDUE, BR-06 포함)
-- [ ] `errorUtils.js` — `createError(code, message, statusCode)` 팩토리 구현
-- [ ] `responseUtils.js` — `sendSuccess(res, data, status)`, `sendError(res, err)` 구현
-- [ ] `statusUtils` 단위 테스트: 5개 시나리오 (날짜 없음, 시작 전, 진행 중, 기간 초과, 완료) 모두 통과
+- [x] `jwtUtils.js` — `signToken({ userId, email })`, `verifyToken(token)` 구현
+- [x] `statusUtils.js` — `computeTodoStatus(todo, now)` 구현 (4-state: NOT_STARTED/IN_PROGRESS/DONE/OVERDUE, BR-06 포함)
+- [x] `errorUtils.js` — `createError(code, message, statusCode)` 팩토리 구현
+- [x] `responseUtils.js` — `sendSuccess(res, data, status)`, `sendError(res, err)` 구현
+- [x] `statusUtils` 단위 테스트: 5개 시나리오 (날짜 없음, 시작 전, 진행 중, 기간 초과, 완료) 모두 통과
 
 **의존성**
-- [ ] BE-01 완료
+- [x] BE-01 완료
 
 ---
 
@@ -146,16 +146,16 @@ DB-03         BE-03               FE-03
 **목표**: JWT 검증 미들웨어와 입력값 유효성 검사 미들웨어를 구현한다.
 
 **완료 조건**
-- [ ] `authenticate.js` — `Authorization: Bearer <token>` 파싱 → `req.user = { userId, email }` 주입
-- [ ] 토큰 없음 → 401 `UNAUTHORIZED`
-- [ ] 토큰 만료/변조 → 401 `UNAUTHORIZED`
-- [ ] `validateAuth.js` — 회원가입: email 형식, password(8자+영문+숫자), name(1~50자) 검증
-- [ ] `validateTodo.js` — title(1~200자), end_date >= start_date 검증
-- [ ] `validateCategory.js` — name(1~50자) 검증
-- [ ] 유효성 실패 시 400 `VALIDATION_ERROR` + 구체적 메시지 반환
+- [x] `authenticate.js` — `Authorization: Bearer <token>` 파싱 → `req.user = { userId, email }` 주입
+- [x] 토큰 없음 → 401 `UNAUTHORIZED`
+- [x] 토큰 만료/변조 → 401 `UNAUTHORIZED`
+- [x] `validateAuth.js` — 회원가입: email 형식, password(8자+영문+숫자), name(1~50자) 검증
+- [x] `validateTodo.js` — title(1~200자), end_date >= start_date 검증
+- [x] `validateCategory.js` — name(1~50자) 검증
+- [x] 유효성 실패 시 400 `VALIDATION_ERROR` + 구체적 메시지 반환
 
 **의존성**
-- [ ] BE-03 완료
+- [x] BE-03 완료
 
 ---
 
@@ -164,17 +164,17 @@ DB-03         BE-03               FE-03
 **목표**: 회원가입, 로그인, 내 정보 조회 API를 구현한다.
 
 **완료 조건**
-- [ ] `userQueries.js` — `findByEmail`, `findById`, `insertUser` 구현 (파라미터화 쿼리)
-- [ ] `authController.register` — bcrypt 해싱, 이메일 중복 시 409 `DUPLICATE_EMAIL`, 성공 시 201 + `{ data: user }` (password 제외)
-- [ ] `authController.login` — bcrypt.compare, 불일치 시 401 `INVALID_CREDENTIALS`, 성공 시 JWT + `{ theme, locale }` 포함 응답
-- [ ] `authController.getMe` — 인증 필요, 본인 정보 반환
-- [ ] `POST /api/v1/auth/register` 라우트 연결
-- [ ] `POST /api/v1/auth/login` 라우트 연결
-- [ ] `GET /api/v1/auth/me` 라우트 연결 (authenticate 미들웨어 적용)
+- [x] `userQueries.js` — `findByEmail`, `findById`, `insertUser` 구현 (파라미터화 쿼리)
+- [x] `authController.register` — bcrypt 해싱, 이메일 중복 시 409 `DUPLICATE_EMAIL`, 성공 시 201 + `{ data: user }` (password 제외)
+- [x] `authController.login` — bcrypt.compare, 불일치 시 401 `INVALID_CREDENTIALS`, 성공 시 JWT + `{ theme, locale }` 포함 응답
+- [x] `authController.getMe` — 인증 필요, 본인 정보 반환
+- [x] `POST /api/v1/auth/register` 라우트 연결
+- [x] `POST /api/v1/auth/login` 라우트 연결
+- [x] `GET /api/v1/auth/me` 라우트 연결 (authenticate 미들웨어 적용)
 
 **의존성**
-- [ ] BE-02 완료
-- [ ] BE-04 완료
+- [x] BE-02 완료
+- [x] BE-04 완료
 
 ---
 
@@ -183,16 +183,16 @@ DB-03         BE-03               FE-03
 **목표**: 카테고리 CRUD API를 구현한다. 기본 카테고리 보호 및 삭제 시 할일 이관 포함.
 
 **완료 조건**
-- [ ] `categoryQueries.js` — `findAllByUserId`, `findByIdAndUserId`, `insertCategory`, `updateCategory`, `deleteCategory`, `reassignTodosToDefault` 구현
-- [ ] `categoryController.getAll` — 본인 카테고리 전체 반환
-- [ ] `categoryController.create` — name 중복(동일 user) 시 409 `DUPLICATE_CATEGORY`
-- [ ] `categoryController.update` — `is_default=true` 수정 시 400 `DEFAULT_CATEGORY_DELETE`
-- [ ] `categoryController.remove` — `is_default=true` 삭제 시 400, 일반 카테고리 삭제 시 트랜잭션으로 할일 기본 카테고리 이관 후 삭제
-- [ ] 타인 카테고리 수정/삭제 시 403 `FORBIDDEN`
-- [ ] 전체 4개 라우트 연결 (authenticate 미들웨어 적용)
+- [x] `categoryQueries.js` — `findAllByUserId`, `findByIdAndUserId`, `insertCategory`, `updateCategory`, `deleteCategory`, `reassignTodosToDefault` 구현
+- [x] `categoryController.getAll` — 본인 카테고리 전체 반환
+- [x] `categoryController.create` — name 중복(동일 user) 시 409 `DUPLICATE_CATEGORY`
+- [x] `categoryController.update` — `is_default=true` 수정 시 400 `VALIDATION_ERROR`
+- [x] `categoryController.remove` — `is_default=true` 삭제 시 400, 일반 카테고리 삭제 시 트랜잭션으로 할일 기본 카테고리 이관 후 삭제
+- [x] 타인 카테고리 수정/삭제 시 403 `FORBIDDEN`
+- [x] 전체 4개 라우트 연결 (authenticate 미들웨어 적용)
 
 **의존성**
-- [ ] BE-05 완료
+- [x] BE-05 완료
 
 ---
 
@@ -201,18 +201,18 @@ DB-03         BE-03               FE-03
 **목표**: 할일 CRUD + 상태 필터 + status 파생값 API를 구현한다.
 
 **완료 조건**
-- [ ] `todoQueries.js` — `findAllByUserId(userId, { categoryId, status })`, `findByIdAndUserId`, `insertTodo`, `updateTodo`, `deleteTodo` 구현
-- [ ] `todoController.getAll` — 필터(categoryId, status) 적용, 각 항목에 `computeTodoStatus` 적용하여 반환
-- [ ] `todoController.getOne` — 타인 접근 시 403
-- [ ] `todoController.create` — category_id 미지정 시 기본 카테고리 자동 적용
-- [ ] `todoController.update` — 날짜 유효성 재검증, 타인 접근 시 403
-- [ ] `todoController.toggleDone` — `PATCH /:id/done` — is_done = true 설정
-- [ ] `todoController.remove` — 타인 접근 시 403
-- [ ] status 필터: 목록 조회 후 애플리케이션 레벨에서 필터링 (N+1 없이)
-- [ ] 전체 6개 라우트 연결 (authenticate 미들웨어 적용)
+- [x] `todoQueries.js` — `findAllByUserId(userId, { categoryId })`, `findByIdAndUserId`, `insertTodo`, `updateTodo`, `deleteTodo` 구현
+- [x] `todoController.getAll` — 필터(categoryId, status) 적용, 각 항목에 `computeTodoStatus` 적용하여 반환
+- [x] `todoController.getOne` — 타인 접근 시 403
+- [x] `todoController.create` — category_id 미지정 시 기본 카테고리 자동 적용
+- [x] `todoController.update` — 날짜 유효성 재검증, 타인 접근 시 403
+- [x] `todoController.toggleDone` — `PATCH /:id/done` — is_done = true 설정
+- [x] `todoController.remove` — 타인 접근 시 403
+- [x] status 필터: 목록 조회 후 애플리케이션 레벨에서 필터링 (N+1 없이)
+- [x] 전체 6개 라우트 연결 (authenticate 미들웨어 적용)
 
 **의존성**
-- [ ] BE-06 완료
+- [x] BE-06 완료
 
 ---
 
@@ -221,13 +221,13 @@ DB-03         BE-03               FE-03
 **목표**: 테마 및 언어 설정을 User 테이블에 저장하는 API를 구현한다.
 
 **완료 조건**
-- [ ] `userQueries.js` — `updateSettings(userId, { theme, locale })` 추가
-- [ ] `userController.updateSettings` — theme(`light|dark`), locale(`ko|en`) 유효성 검증, 저장 후 업데이트된 user 반환
-- [ ] `PATCH /api/v1/users/me/settings` 라우트 연결 (authenticate 미들웨어 적용)
-- [ ] 잘못된 theme/locale 값 시 400 `VALIDATION_ERROR`
+- [x] `userQueries.js` — `updateSettings(userId, { theme, locale })` 추가
+- [x] `userController.updateSettings` — theme(`light|dark`), locale(`ko|en`) 유효성 검증, 저장 후 업데이트된 user 반환
+- [x] `PATCH /api/v1/users/me/settings` 라우트 연결 (authenticate 미들웨어 적용)
+- [x] 잘못된 theme/locale 값 시 400 `VALIDATION_ERROR`
 
 **의존성**
-- [ ] BE-05 완료
+- [x] BE-05 완료
 
 ---
 
@@ -236,14 +236,14 @@ DB-03         BE-03               FE-03
 **목표**: 이름·비밀번호 수정 및 회원 탈퇴 API를 구현한다.
 
 **완료 조건**
-- [ ] `userQueries.js` — `updateUser(userId, data)`, `deleteUser(userId)` 추가
-- [ ] `authController.updateMe` — 현재 비밀번호 확인 후 이름/비밀번호 변경
-- [ ] `authController.deleteMe` — 비밀번호 재확인 후 계정 삭제 (CASCADE로 카테고리·할일 자동 삭제)
-- [ ] `PUT /api/v1/auth/me` 및 `DELETE /api/v1/auth/me` 라우트 연결
-- [ ] 현재 비밀번호 불일치 시 401 `INVALID_CREDENTIALS`
+- [x] `userQueries.js` — `updateUser(userId, data)`, `deleteUser(userId)` 추가
+- [x] `authController.updateMe` — 현재 비밀번호 확인 후 이름/비밀번호 변경
+- [x] `authController.deleteMe` — 비밀번호 재확인 후 계정 삭제 (CASCADE로 카테고리·할일 자동 삭제)
+- [x] `PUT /api/v1/auth/me` 및 `DELETE /api/v1/auth/me` 라우트 연결
+- [x] 현재 비밀번호 불일치 시 401 `INVALID_CREDENTIALS`
 
 **의존성**
-- [ ] BE-05 완료
+- [x] BE-05 완료
 
 ---
 
@@ -252,19 +252,19 @@ DB-03         BE-03               FE-03
 **목표**: `app.js`에 전역 에러 핸들러를 등록하고 서버를 완성한다.
 
 **완료 조건**
-- [ ] 전역 에러 핸들러 — `err.statusCode` 유무에 따라 알려진/알 수 없는 에러 분기
-- [ ] 500 에러 응답에 스택 트레이스 미포함 확인 (`NODE_ENV=production`)
-- [ ] 404 핸들러 — 정의되지 않은 경로 요청 시 404 응답
-- [ ] CORS 설정 — `process.env.CORS_ORIGIN` 기반, 와일드카드 미사용
-- [ ] `backend/.eslintrc.js` 설정 및 `npm run lint` 오류 없음
-- [ ] `npm test` — auth/todo/category 통합 테스트 (Tier 1 항목) 모두 통과
-  - [ ] JWT 미들웨어: 유효/만료/없음 3케이스
-  - [ ] 소유권: 타인 리소스 접근 403 확인
-  - [ ] 카테고리 삭제 → 할일 이관 로직
+- [x] 전역 에러 핸들러 — `err.statusCode` 유무에 따라 알려진/알 수 없는 에러 분기
+- [x] 500 에러 응답에 스택 트레이스 미포함 확인 (`NODE_ENV=production`)
+- [x] 404 핸들러 — 정의되지 않은 경로 요청 시 404 응답
+- [x] CORS 설정 — `process.env.CORS_ORIGIN` 기반, 와일드카드 미사용
+- [x] `backend/.eslintrc.js` 설정 및 `npm run lint` 오류 없음
+- [x] `npm test` — auth/todo/category 통합 테스트 (Tier 1 항목) 모두 통과
+  - [x] JWT 미들웨어: 유효/만료/없음 3케이스
+  - [x] 소유권: 타인 리소스 접근 403 확인
+  - [x] 카테고리 삭제 → 할일 이관 로직
 
 **의존성**
-- [ ] BE-07 완료
-- [ ] BE-08 완료
+- [x] BE-07 완료
+- [x] BE-08 완료
 
 ---
 
