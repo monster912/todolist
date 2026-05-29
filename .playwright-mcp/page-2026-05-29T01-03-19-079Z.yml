@@ -1,0 +1,16 @@
+- generic [ref=e586]:
+  - heading "Log In" [level=1] [ref=e587]
+  - generic [ref=e588]:
+    - generic [ref=e589]:
+      - generic [ref=e590]: Email
+      - textbox "Email" [ref=e591]:
+        - /placeholder: Enter your email
+    - generic [ref=e592]:
+      - generic [ref=e593]: Password
+      - textbox "Password" [ref=e594]:
+        - /placeholder: 8+ chars with letters and numbers
+    - button "Log In" [ref=e595] [cursor=pointer]
+  - paragraph [ref=e596]:
+    - text: Don't have an account?
+    - link "Sign up" [ref=e597] [cursor=pointer]:
+      - /url: /register

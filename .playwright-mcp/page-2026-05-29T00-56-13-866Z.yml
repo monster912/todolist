@@ -1,0 +1,16 @@
+- generic [ref=e169]:
+  - heading "로그인" [level=1] [ref=e170]
+  - generic [ref=e171]:
+    - generic [ref=e172]:
+      - generic [ref=e173]: 이메일
+      - textbox "이메일" [ref=e174]:
+        - /placeholder: 이메일을 입력하세요
+    - generic [ref=e175]:
+      - generic [ref=e176]: 비밀번호
+      - textbox "비밀번호" [ref=e177]:
+        - /placeholder: 8자 이상, 영문+숫자 조합
+    - button "로그인" [ref=e178] [cursor=pointer]
+  - paragraph [ref=e179]:
+    - text: 계정이 없으신가요?
+    - link "회원가입" [ref=e180] [cursor=pointer]:
+      - /url: /register

@@ -474,10 +474,18 @@ DB-03         BE-03               FE-03
 
 **완료 조건**
 - [x] `pages/DashboardPage.tsx` — 카테고리 사이드바 + 상태 필터 탭 + TodoList 조합
+- [x] **목록/달력 뷰 토글 버튼** — `uiStore.viewMode` 기반 조건부 렌더링
+  - [x] 목록 뷰: 기존 상태 필터 탭 + TodoList
+  - [x] 달력 뷰: CalendarView (월간/주간/타임라인 탭)
 - [x] 카테고리 선택/상태 필터 변경 시 `useTodos` 재조회 (자동)
 - [x] 할일 완료 토글 — `useToggleTodoDone` 호출 후 목록 갱신
 - [x] 할일 삭제 — Modal 확인 후 `useDeleteTodo` 호출
 - [x] 반응형: `>= 1024px` 사이드바 + 메인 2단, `< 1024px` 단일 컬럼
+- [x] **달력 컴포넌트**:
+  - [x] `components/calendar/CalendarView.tsx` — 월간/주간/타임라인 탭 전환, 이전/다음 네비게이션
+  - [x] `components/calendar/MonthlyView.tsx` — 7열 그리드, 할일 칩 표시, 균등 셀 높이
+  - [x] `components/calendar/WeeklyView.tsx` — 주간 컬럼 뷰, 날짜별 할일 카드
+  - [x] `components/calendar/TimelineView.tsx` — Gantt 스타일 타임라인
 
 **의존성**
 - [x] FE-11 완료
@@ -492,8 +500,18 @@ DB-03         BE-03               FE-03
 **완료 조건**
 - [x] `pages/TodoCreatePage.tsx` — TodoForm으로 신규 생성, 성공 시 `/` 이동
 - [x] `pages/TodoEditPage.tsx` — `useTodo(id)`로 기존 데이터 프리필, 수정 후 상세 페이지 이동
-- [x] `pages/TodoDetailPage.tsx` — 전체 필드 표시, status 배지, 완료 처리 버튼, 수정/삭제 버튼
+- [x] `pages/TodoDetailPage.tsx` — 전체 필드 표시, status 배지, 완료/미완료 토글 버튼, 수정/삭제 버튼
 - [x] 타인 할일 접근 시 403 → 홈으로 리다이렉트
+- [x] **시간 선택 기능**:
+  - [x] `components/todo/TodoForm.tsx` — date 입력을 `datetime-local` 타입으로 변경 (날짜 + 시간 선택)
+  - [x] `utils/dateFormat.ts` — `datetimeLocalToISO()` 변환 함수 (로컬 시간 → ISO 8601)
+- [x] **시간 형식 개선**:
+  - [x] `formatDateRange()` — 읽기 좋은 형식 (예: `05/28 15:00 ~ 05/29 17:00`)
+  - [x] TodoCard, TodoDetailPage, TimelineView에 적용
+- [x] **완료 처리 원복**:
+  - [x] TodoCard 체크박스 — 완료/미완료 토글 가능
+  - [x] TodoDetailPage — 완료 시 "미완료로 변경" 버튼 표시
+  - [x] `todo.restore` 번역 키 추가 (ko/en)
 
 **의존성**
 - [x] FE-13 완료
@@ -578,4 +596,5 @@ FE-04
 
 | 버전 | 날짜 | 변경 내용 | 작성자 |
 |:---|:---|:---|:---|
+| 1.1.0 | 2026-05-29 | FE-13, FE-14 확장: 달력 뷰(월간/주간/타임라인), 시간 선택, 시간 형식 개선, 완료 원복 기능 추가 | Claude |
 | 1.0.0 | 2026-05-28 | 초기 작성 — 29개 Task (DB 3, BE 10, FE 16) | ochlo |

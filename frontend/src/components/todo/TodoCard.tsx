@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Check, Pencil, Trash2, Calendar, Folder } from 'lucide-react'
 import { StatusBadge } from './StatusBadge'
+import { formatDateRange } from '@/utils/dateFormat'
 import type { Todo } from '@/types/todo.types'
 import type { Category } from '@/types/category.types'
 
@@ -20,9 +21,10 @@ export function TodoCard({ todo, category, onToggleDone, onDelete }: TodoCardPro
       <div className="todo-card-left">
         <button
           className={`checkbox${todo.is_done ? ' checked' : ''}`}
-          onClick={() => { if (!todo.is_done) onToggleDone(todo.id) }}
-          aria-label={t('todo.complete')}
+          onClick={() => onToggleDone(todo.id)}
+          aria-label={todo.is_done ? t('todo.restore') : t('todo.complete')}
           type="button"
+          title={todo.is_done ? t('todo.restore') : t('todo.complete')}
         >
           {todo.is_done && <Check size={10} strokeWidth={3} />}
         </button>
@@ -48,7 +50,7 @@ export function TodoCard({ todo, category, onToggleDone, onDelete }: TodoCardPro
             {(todo.start_date ?? todo.end_date) && (
               <span className="todo-meta-item">
                 <Calendar size={14} strokeWidth={1.5} />
-                {todo.start_date ?? '?'} ~ {todo.end_date ?? '?'}
+                {formatDateRange(todo.start_date, todo.end_date, 'short')}
               </span>
             )}
           </div>

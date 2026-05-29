@@ -11,7 +11,9 @@
     "close": "닫기",
     "all": "전체",
     "yes": "예",
-    "no": "아니오"
+    "no": "아니오",
+    "previous": "이전",
+    "next": "다음"
   },
   "auth": {
     "login": "로그인",
@@ -55,6 +57,8 @@
     "edit": "할일 수정",
     "delete": "할일 삭제",
     "complete": "완료 처리",
+    "restore": "미완료로 변경",
+    "list": "목록",
     "empty": "할일이 없습니다.",
     "emptyFiltered": "조건에 맞는 할일이 없습니다.",
     "status": {
@@ -78,6 +82,13 @@
       "endDateBeforeStart": "종료일은 시작일 이후여야 합니다.",
       "forbidden": "이 할일에 접근할 수 없습니다."
     }
+  },
+  "calendar": {
+    "view": "달력",
+    "monthly": "월간",
+    "weekly": "주간",
+    "timeline": "타임라인",
+    "today": "오늘"
   },
   "category": {
     "name": "카테고리명",

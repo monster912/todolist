@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { House, Tag, Settings, LogOut, Plus } from 'lucide-react'
+import { House, Tag, Settings, LogOut, Plus, List, Calendar } from 'lucide-react'
 import { TodoList } from '@/components/todo/TodoList'
 import { CategoryFilter } from '@/components/category/CategoryFilter'
+import { CalendarView } from '@/components/calendar/CalendarView'
 import { Modal } from '@/components/common/Modal'
 import { Button } from '@/components/common/Button'
 import { useTodos } from '@/hooks/useTodos'
@@ -19,7 +20,7 @@ export function DashboardPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { user, clearAuth } = useAuthStore()
-  const { selectedCategoryId, statusFilter, setStatusFilter } = useUiStore()
+  const { selectedCategoryId, statusFilter, setStatusFilter, viewMode, setViewMode } = useUiStore()
 
   const [todoToDelete, setTodoToDelete] = useState<string | null>(null)
 
@@ -98,28 +99,59 @@ export function DashboardPage() {
               {!catLoading && <CategoryFilter categories={categories} variant="tabs" />}
             </div>
 
-            {/* 상태 필터 탭 */}
-            <div className="tab-list scrollbar-hidden">
-              {STATUS_FILTERS.map((s) => (
-                <button
-                  key={s}
-                  type="button"
-                  className={`tab-item${(s === 'all' ? !statusFilter : statusFilter === s) ? ' active' : ''}`}
-                  onClick={() => setStatusFilter(s === 'all' ? null : (s as TodoStatus))}
-                >
-                  {s === 'all' ? t('todo.filter.all') : t(`todo.filter.${s}`)}
-                </button>
-              ))}
+            {/* 목록/달력 토글 버튼 */}
+            <div style={{ display: 'flex', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-3)', alignItems: 'center' }}>
+              <button
+                type="button"
+                className={`btn ${viewMode === 'list' ? 'btn-primary' : 'btn-ghost'}`}
+                onClick={() => setViewMode('list')}
+                title={t('todo.list')}
+              >
+                <List size={18} strokeWidth={1.5} />
+                {t('todo.list')}
+              </button>
+              <button
+                type="button"
+                className={`btn ${viewMode === 'calendar' ? 'btn-primary' : 'btn-ghost'}`}
+                onClick={() => setViewMode('calendar')}
+                title={t('calendar.view')}
+              >
+                <Calendar size={18} strokeWidth={1.5} />
+                {t('calendar.view')}
+              </button>
             </div>
 
-            {/* 할일 목록 */}
-            <TodoList
-              todos={todos}
-              categories={categories}
-              isLoading={todosLoading || catLoading}
-              onToggleDone={(id) => toggleDone(id)}
-              onDelete={(id) => setTodoToDelete(id)}
-            />
+            {/* 상태 필터 탭 (목록 뷰에서만 표시) */}
+            {viewMode === 'list' && (
+              <div className="tab-list scrollbar-hidden">
+                {STATUS_FILTERS.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    className={`tab-item${(s === 'all' ? !statusFilter : statusFilter === s) ? ' active' : ''}`}
+                    onClick={() => setStatusFilter(s === 'all' ? null : (s as TodoStatus))}
+                  >
+                    {s === 'all' ? t('todo.filter.all') : t(`todo.filter.${s}`)}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* 목록 뷰 */}
+            {viewMode === 'list' && (
+              <TodoList
+                todos={todos}
+                categories={categories}
+                isLoading={todosLoading || catLoading}
+                onToggleDone={(id) => toggleDone(id)}
+                onDelete={(id) => setTodoToDelete(id)}
+              />
+            )}
+
+            {/* 달력 뷰 */}
+            {viewMode === 'calendar' && (
+              <CalendarView />
+            )}
           </main>
         </div>
       </div>

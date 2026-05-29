@@ -3,11 +3,15 @@
 const { createError } = require('../utils/errorUtils');
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const DATETIME_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/;
 
 function isValidDate(str) {
-  if (!DATE_RE.test(str)) return false;
-  const d = new Date(str);
-  return !isNaN(d.getTime());
+  // ISO 8601 형식(datetime) 또는 YYYY-MM-DD 형식(date) 모두 지원
+  if (DATETIME_RE.test(str) || DATE_RE.test(str)) {
+    const d = new Date(str);
+    return !isNaN(d.getTime());
+  }
+  return false;
 }
 
 function validateCreateTodo(req, _res, next) {

@@ -1,0 +1,30 @@
+- generic [ref=e352]:
+  - generic [ref=e353]:
+    - button [ref=e354] [cursor=pointer]:
+      - img [ref=e355]
+    - heading "할일 등록" [level=1] [ref=e357]
+  - generic [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]: 제목
+      - textbox "제목" [ref=e362]:
+        - /placeholder: 할일 제목을 입력하세요
+    - generic [ref=e363]:
+      - generic [ref=e364]: 설명
+      - textbox "설명" [ref=e365]:
+        - /placeholder: 설명을 입력하세요 (선택)
+    - generic [ref=e366]:
+      - generic [ref=e367]: 카테고리
+      - combobox "카테고리" [ref=e368] [cursor=pointer]:
+        - option "기본" [selected]
+        - option "기본"
+        - option "마케팅"
+    - generic [ref=e369]:
+      - generic [ref=e370]:
+        - generic [ref=e371]: 시작일
+        - textbox "시작일" [ref=e372]
+      - generic [ref=e373]:
+        - generic [ref=e374]: 종료일
+        - textbox "종료일" [ref=e375]
+    - generic [ref=e376]:
+      - button "취소" [ref=e377] [cursor=pointer]
+      - button "할일 등록" [ref=e378] [cursor=pointer]

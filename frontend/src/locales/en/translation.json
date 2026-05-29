@@ -11,7 +11,9 @@
     "close": "Close",
     "all": "All",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "previous": "Previous",
+    "next": "Next"
   },
   "auth": {
     "login": "Log In",
@@ -55,6 +57,8 @@
     "edit": "Edit Todo",
     "delete": "Delete Todo",
     "complete": "Mark as Done",
+    "restore": "Mark as Not Done",
+    "list": "List",
     "empty": "No todos found.",
     "emptyFiltered": "No todos match the filter.",
     "status": {
@@ -78,6 +82,13 @@
       "endDateBeforeStart": "End date must be on or after start date.",
       "forbidden": "You do not have access to this todo."
     }
+  },
+  "calendar": {
+    "view": "Calendar",
+    "monthly": "Monthly",
+    "weekly": "Weekly",
+    "timeline": "Timeline",
+    "today": "Today"
   },
   "category": {
     "name": "Category Name",

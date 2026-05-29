@@ -9,6 +9,7 @@ import { LoadingSpinner } from '@/components/common/LoadingSpinner'
 import { useTodo } from '@/hooks/useTodo'
 import { useCategories } from '@/hooks/useCategories'
 import { useToggleTodoDone, useDeleteTodo } from '@/hooks/useTodoMutations'
+import { formatDateRange } from '@/utils/dateFormat'
 import type { ApiError } from '@/types/api.types'
 
 export function TodoDetailPage() {
@@ -91,7 +92,7 @@ export function TodoDetailPage() {
           {(todo.start_date ?? todo.end_date) && (
             <div className="todo-meta-item">
               <Calendar size={14} strokeWidth={1.5} />
-              {todo.start_date ?? '?'} ~ {todo.end_date ?? '?'}
+              {formatDateRange(todo.start_date, todo.end_date, 'long')}
             </div>
           )}
         </div>
@@ -103,7 +104,7 @@ export function TodoDetailPage() {
           </div>
         )}
 
-        {/* 완료 처리 버튼 */}
+        {/* 완료/원복 버튼 */}
         {!todo.is_done && (
           <Button
             variant="primary"
@@ -113,6 +114,16 @@ export function TodoDetailPage() {
           >
             <Check size={16} strokeWidth={2} />
             {t('todo.complete')}
+          </Button>
+        )}
+        {todo.is_done && (
+          <Button
+            variant="secondary"
+            onClick={() => toggleDone(todo.id)}
+            loading={toggling}
+            style={{ display: 'inline-flex', gap: 'var(--spacing-2)' }}
+          >
+            {t('todo.restore')}
           </Button>
         )}
       </div>

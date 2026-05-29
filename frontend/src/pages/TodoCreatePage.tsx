@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft } from 'lucide-react'
 import { TodoForm } from '@/components/todo/TodoForm'
@@ -7,9 +7,15 @@ import { useCategories } from '@/hooks/useCategories'
 import { LoadingSpinner } from '@/components/common/LoadingSpinner'
 import type { CreateTodoInput } from '@/types/todo.types'
 
+interface LocationState {
+  startDate?: string
+}
+
 export function TodoCreatePage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
+  const state = (location.state as LocationState) || {}
 
   const { data: categoriesResult, isLoading: catLoading } = useCategories()
   const { mutateAsync: createTodo } = useCreateTodo()
@@ -34,6 +40,9 @@ export function TodoCreatePage() {
       <div className="page-content">
         <TodoForm
           categories={categories}
+          initialValues={{
+            start_date: state.startDate,
+          }}
           onSubmit={(v) => handleSubmit(v as CreateTodoInput)}
           onCancel={() => navigate(-1)}
         />

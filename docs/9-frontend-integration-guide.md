@@ -1110,4 +1110,5 @@ const badge = today > new Date(todo.end_date!) ? 'OVERDUE' : 'IN_PROGRESS';
 
 | 버전 | 날짜 | 변경 내용 | 작성자 |
 |------|------|----------|--------|
+| 1.1.0 | 2026-05-29 | 달력 뷰 및 시간 형식 추가 — CalendarView/MonthlyView/WeeklyView/TimelineView, 시간 선택(datetime-local), 시간 형식 개선(formatDateRange), 완료 원복 기능 | Claude |
 | 1.0.0 | 2026-05-28 | 최초 작성 — 백엔드 API 기반 프론트엔드 통합 가이드 전체 작성 | ochlo |

@@ -95,7 +95,7 @@ async function toggleDone(req, res, next) {
     if (!existing) {
       return next(createError('FORBIDDEN', '할일에 대한 접근 권한이 없습니다.', 403));
     }
-    const updated = await todoQueries.updateTodo(id, { is_done: true });
+    const updated = await todoQueries.updateTodo(id, { is_done: !existing.is_done });
     return sendSuccess(res, withStatus(updated));
   } catch (err) {
     next(err);
