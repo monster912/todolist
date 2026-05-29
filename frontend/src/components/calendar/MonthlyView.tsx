@@ -25,7 +25,7 @@ export function MonthlyView({ currentDate, todos }: MonthlyViewProps) {
   const today = dayjs()
 
   // 달력 그리드 생성
-  const { weeks, firstDay } = useMemo(() => {
+  const { weeks } = useMemo(() => {
     const first = dayjs(`${year}-${month + 1}-01`)
     const firstDayOfWeek = first.day()
     const daysInMonth = first.daysInMonth()

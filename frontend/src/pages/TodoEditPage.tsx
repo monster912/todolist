@@ -22,7 +22,7 @@ export function TodoEditPage() {
   // 403 Forbidden → 홈으로 리다이렉트
   useEffect(() => {
     if (error) {
-      const apiErr = error as ApiError
+      const apiErr = error as unknown as ApiError
       if (apiErr.code === 'FORBIDDEN' || apiErr.code === 'NOT_FOUND') {
         navigate('/', { replace: true })
       }

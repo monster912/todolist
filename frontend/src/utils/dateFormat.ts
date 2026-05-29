@@ -32,8 +32,6 @@ export function formatDateRange(
   if (!end) return start.format(format === 'short' ? 'MM/DD HH:mm' : 'YYYY년 MM월 DD일 HH:mm')
 
   const isSameDay = start.isSame(end, 'day')
-  const isSameTime = start.isSame(end, 'minute')
-
   if (isSameDay) {
     if (format === 'short') {
       return `${start.format('MM/DD')} ${start.format('HH:mm')} ~ ${end.format('HH:mm')}`
