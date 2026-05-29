@@ -275,13 +275,13 @@ DB-03         BE-03               FE-03
 **목표**: `frontend/` 디렉토리에 Vite 기반 React 프로젝트를 생성하고 기본 패키지를 설치한다.
 
 **완료 조건**
-- [ ] `npm create vite@latest frontend -- --template react-ts` 실행
-- [ ] 의존성 설치: `react-router-dom`, `zustand`, `@tanstack/react-query`, `axios`, `react-i18next`, `i18next`
-- [ ] `frontend/.env.example` 작성 (`VITE_API_BASE_URL`, `VITE_DEFAULT_LOCALE`, `VITE_DEFAULT_THEME`)
-- [ ] `frontend/.env` 로컬 값 설정
-- [ ] `tsconfig.json` — `strict: true`, `paths` alias (`@/*`) 설정
-- [ ] `vite.config.ts` — `@` alias 등록
-- [ ] `npm run dev` 정상 기동 확인
+- [x] `npm create vite@latest frontend -- --template react-ts` 실행
+- [x] 의존성 설치: `react-router-dom`, `zustand`, `@tanstack/react-query`, `axios`, `react-i18next`, `i18next`
+- [x] `frontend/.env.example` 작성 (`VITE_API_BASE_URL`, `VITE_DEFAULT_LOCALE`, `VITE_DEFAULT_THEME`)
+- [x] `frontend/.env` 로컬 값 설정
+- [x] `tsconfig.json` — `strict: true`, `paths` alias (`@/*`) 설정
+- [x] `vite.config.ts` — `@` alias 등록
+- [x] `npm run dev` 정상 기동 확인
 
 **의존성**
 - 없음
@@ -293,14 +293,14 @@ DB-03         BE-03               FE-03
 **목표**: 프론트엔드 전체에서 사용할 도메인·API 타입을 정의한다.
 
 **완료 조건**
-- [ ] `types/todo.types.ts` — `Todo`, `TodoStatus`, `CreateTodoInput`, `UpdateTodoInput`
-- [ ] `types/category.types.ts` — `Category`, `CreateCategoryInput`, `UpdateCategoryInput`
-- [ ] `types/user.types.ts` — `User`(`id, email, name, theme, locale`), `AuthUser`
-- [ ] `types/api.types.ts` — `ApiResponse<T>`, `ApiError`, `PaginatedResponse<T>`
-- [ ] `any` 타입 미사용
+- [x] `types/todo.types.ts` — `Todo`, `TodoStatus`, `CreateTodoInput`, `UpdateTodoInput`
+- [x] `types/category.types.ts` — `Category`, `CreateCategoryInput`, `UpdateCategoryInput`
+- [x] `types/user.types.ts` — `User`(`id, email, name, theme, locale`), `AuthUser`
+- [x] `types/api.types.ts` — `ApiResponse<T>`, `ApiError`, `PaginatedResponse<T>`
+- [x] `any` 타입 미사용
 
 **의존성**
-- [ ] FE-01 완료
+- [x] FE-01 완료
 
 ---
 
@@ -309,14 +309,14 @@ DB-03         BE-03               FE-03
 **목표**: 토큰 자동 주입 및 401 자동 처리가 포함된 axios 인스턴스를 구성한다.
 
 **완료 조건**
-- [ ] `api/client.ts` — `baseURL: import.meta.env.VITE_API_BASE_URL` 설정
-- [ ] 요청 인터셉터 — `authStore`에서 토큰 꺼내 `Authorization: Bearer` 헤더 주입
-- [ ] 응답 인터셉터 — 401 수신 시 `authStore.clearAuth()` 호출 후 `/login`으로 리다이렉트
-- [ ] 에러 응답 → `ApiError` 형태로 변환하여 상위로 throw
+- [x] `api/client.ts` — `baseURL: import.meta.env.VITE_API_BASE_URL` 설정
+- [x] 요청 인터셉터 — `authStore`에서 토큰 꺼내 `Authorization: Bearer` 헤더 주입
+- [x] 응답 인터셉터 — 401 수신 시 `authStore.clearAuth()` 호출 후 `/login`으로 리다이렉트
+- [x] 에러 응답 → `ApiError` 형태로 변환하여 상위로 throw
 
 **의존성**
-- [ ] FE-02 완료
-- [ ] FE-05 완료 (authStore 토큰 접근 필요)
+- [x] FE-02 완료
+- [x] FE-05 완료 (authStore 토큰 접근 필요)
 
 ---
 
@@ -325,15 +325,15 @@ DB-03         BE-03               FE-03
 **목표**: 백엔드 엔드포인트에 대응하는 API 호출 함수를 도메인별로 작성한다.
 
 **완료 조건**
-- [ ] `api/authApi.ts` — `register`, `login`, `getMe`
-- [ ] `api/todoApi.ts` — `getTodos({ categoryId?, status? })`, `getTodo(id)`, `createTodo`, `updateTodo`, `deleteTodo`, `toggleDone(id)`
-- [ ] `api/categoryApi.ts` — `getCategories`, `createCategory`, `updateCategory(id)`, `deleteCategory(id)`
-- [ ] `api/userApi.ts` — `updateSettings({ theme?, locale? })`
-- [ ] 모든 함수에서 `client.ts`의 axios 인스턴스만 사용 (직접 axios import 금지)
-- [ ] 반환 타입 명시 (`Promise<ApiResponse<T>>`)
+- [x] `api/authApi.ts` — `register`, `login`, `getMe`
+- [x] `api/todoApi.ts` — `getTodos({ categoryId?, status? })`, `getTodo(id)`, `createTodo`, `updateTodo`, `deleteTodo`, `toggleDone(id)`
+- [x] `api/categoryApi.ts` — `getCategories`, `createCategory`, `updateCategory(id)`, `deleteCategory(id)`
+- [x] `api/userApi.ts` — `updateSettings({ theme?, locale? })`
+- [x] 모든 함수에서 `client.ts`의 axios 인스턴스만 사용 (직접 axios import 금지)
+- [x] 반환 타입 명시 (`Promise<ApiResponse<T>>`)
 
 **의존성**
-- [ ] FE-03 완료
+- [x] FE-03 완료
 
 ---
 
@@ -342,14 +342,14 @@ DB-03         BE-03               FE-03
 **목표**: 인증 상태와 UI 전역 상태를 Zustand 스토어로 구현한다.
 
 **완료 조건**
-- [ ] `stores/authStore.ts` — `token`, `user(AuthUser)`, `setAuth(token, user)`, `clearAuth()`
-  - [ ] `token` → `localStorage`에 persist
-  - [ ] 페이지 새로고침 시 localStorage에서 토큰 복원
-- [ ] `stores/uiStore.ts` — `selectedCategoryId`, `statusFilter`, `setSelectedCategory`, `setStatusFilter`
-- [ ] `any` 타입 미사용, 액션명 N-05 컨벤션 준수
+- [x] `stores/authStore.ts` — `token`, `user(AuthUser)`, `setAuth(token, user)`, `clearAuth()`
+  - [x] `token` → `localStorage`에 persist
+  - [x] 페이지 새로고침 시 localStorage에서 토큰 복원
+- [x] `stores/uiStore.ts` — `selectedCategoryId`, `statusFilter`, `setSelectedCategory`, `setStatusFilter`
+- [x] `any` 타입 미사용, 액션명 N-05 컨벤션 준수
 
 **의존성**
-- [ ] FE-02 완료
+- [x] FE-02 완료
 
 ---
 
@@ -358,14 +358,14 @@ DB-03         BE-03               FE-03
 **목표**: `react-i18next`를 초기화하고 한국어/영어 번역 파일을 작성한다.
 
 **완료 조건**
-- [ ] `i18n.ts` — `i18next` 초기화, 언어 결정 우선순위: 1) `authStore.user.locale` → 2) `navigator.language` → 3) `VITE_DEFAULT_LOCALE`
-- [ ] `locales/ko/translation.json` — 전체 UI 키: 버튼, 레이블, 에러 메시지, status 텍스트
-- [ ] `locales/en/translation.json` — 동일 키 구조, 영문 번역
-- [ ] `App.tsx`에서 `i18n.ts` import 및 초기화
-- [ ] `useTranslation` 훅으로 `t('key')` 정상 동작 확인
+- [x] `i18n.ts` — `i18next` 초기화, 언어 결정 우선순위: 1) `authStore.user.locale` → 2) `navigator.language` → 3) `VITE_DEFAULT_LOCALE`
+- [x] `locales/ko/translation.json` — 전체 UI 키: 버튼, 레이블, 에러 메시지, status 텍스트
+- [x] `locales/en/translation.json` — 동일 키 구조, 영문 번역
+- [x] `App.tsx`에서 `i18n.ts` import 및 초기화
+- [x] `useTranslation` 훅으로 `t('key')` 정상 동작 확인
 
 **의존성**
-- [ ] FE-05 완료
+- [x] FE-05 완료
 
 ---
 
@@ -374,14 +374,14 @@ DB-03         BE-03               FE-03
 **목표**: 라우트 구조와 인증 보호 라우트를 구성한다.
 
 **완료 조건**
-- [ ] `router/index.tsx` — 8개 화면 라우트 정의 (S-01 ~ S-08)
-- [ ] `PrivateRoute` 컴포넌트 — 미인증 시 `/login`으로 리다이렉트
-- [ ] 공개 라우트: `/login`, `/register`
-- [ ] 보호 라우트: `/`, `/todos/new`, `/todos/:id/edit`, `/todos/:id`, `/categories`, `/settings`
-- [ ] `App.tsx` — `QueryClientProvider` + `BrowserRouter` + `RouterProvider` 래핑
+- [x] `router/index.tsx` — 8개 화면 라우트 정의 (S-01 ~ S-08)
+- [x] `PrivateRoute` 컴포넌트 — 미인증 시 `/login`으로 리다이렉트
+- [x] 공개 라우트: `/login`, `/register`
+- [x] 보호 라우트: `/`, `/todos/new`, `/todos/:id/edit`, `/todos/:id`, `/categories`, `/settings`
+- [x] `App.tsx` — `QueryClientProvider` + `RouterProvider` 래핑
 
 **의존성**
-- [ ] FE-05 완료
+- [x] FE-05 완료
 
 ---
 
@@ -390,15 +390,15 @@ DB-03         BE-03               FE-03
 **목표**: 여러 페이지에서 재사용되는 기본 UI 컴포넌트를 구현한다.
 
 **완료 조건**
-- [ ] `components/common/Button.tsx` — variant(primary/secondary/danger), disabled, loading 상태
-- [ ] `components/common/Input.tsx` — label, error 메시지, controlled 입력
-- [ ] `components/common/Modal.tsx` — 열림/닫힘 제어, 외부 클릭 닫기
-- [ ] `components/common/LoadingSpinner.tsx` — 로딩 인디케이터
-- [ ] 모든 컴포넌트 Props 타입 정의 (`컴포넌트명 + Props`)
-- [ ] 다크모드 대응 CSS 적용 (`data-theme` 또는 Tailwind `dark:`)
+- [x] `components/common/Button.tsx` — variant(primary/secondary/danger), disabled, loading 상태
+- [x] `components/common/Input.tsx` — label, error 메시지, controlled 입력
+- [x] `components/common/Modal.tsx` — 열림/닫힘 제어, 외부 클릭 닫기
+- [x] `components/common/LoadingSpinner.tsx` — 로딩 인디케이터
+- [x] 모든 컴포넌트 Props 타입 정의 (`컴포넌트명 + Props`)
+- [x] 다크모드 대응 CSS 적용 (`data-theme` 기반 CSS 변수)
 
 **의존성**
-- [ ] FE-01 완료
+- [x] FE-01 완료
 
 ---
 
@@ -407,17 +407,17 @@ DB-03         BE-03               FE-03
 **목표**: 로그인 및 회원가입 페이지를 구현한다.
 
 **완료 조건**
-- [ ] `pages/LoginPage.tsx` — email/password 폼, 제출 시 `authApi.login` 호출, 성공 시 `authStore.setAuth` + `/` 리다이렉트, 실패 시 에러 메시지 표시
-- [ ] `pages/RegisterPage.tsx` — email/password/name 폼, 성공 시 로그인 페이지 이동
-- [ ] 로그인 응답의 `theme`, `locale` → `authStore.user`에 저장 + 즉시 i18n/테마 적용
-- [ ] 클라이언트 사이드 유효성 검사 (제출 전)
-- [ ] 이미 로그인된 사용자가 `/login` 접근 시 `/`로 리다이렉트
+- [x] `pages/LoginPage.tsx` — email/password 폼, 제출 시 `authApi.login` 호출, 성공 시 `authStore.setAuth` + `/` 리다이렉트, 실패 시 에러 메시지 표시
+- [x] `pages/RegisterPage.tsx` — email/password/name 폼, 성공 시 로그인 페이지 이동
+- [x] 로그인 응답의 `theme`, `locale` → `authStore.user`에 저장 + 즉시 i18n/테마 적용
+- [x] 클라이언트 사이드 유효성 검사 (제출 전)
+- [x] 이미 로그인된 사용자가 `/login` 접근 시 `/`로 리다이렉트
 
 **의존성**
-- [ ] FE-04 완료
-- [ ] FE-06 완료
-- [ ] FE-07 완료
-- [ ] FE-08 완료
+- [x] FE-04 완료
+- [x] FE-06 완료
+- [x] FE-07 완료
+- [x] FE-08 완료
 
 ---
 
@@ -426,15 +426,15 @@ DB-03         BE-03               FE-03
 **목표**: 서버 상태 관리를 위한 TanStack Query 커스텀 훅을 작성한다.
 
 **완료 조건**
-- [ ] `hooks/useTodos.ts` — `useQuery(['todos', filters])`, 필터 변경 시 자동 재조회
-- [ ] `hooks/useTodo.ts` — `useQuery(['todos', id])`
-- [ ] `hooks/useTodoMutations.ts` — `useCreateTodo`, `useUpdateTodo`, `useDeleteTodo`, `useToggleTodoDone` — 성공 시 `['todos']` 캐시 무효화
-- [ ] `hooks/useCategories.ts` — `useQuery(['categories'])`
-- [ ] `hooks/useCategoryMutations.ts` — `useCreateCategory`, `useUpdateCategory`, `useDeleteCategory` — 성공 시 캐시 무효화
-- [ ] Query key 구조 N-04 컨벤션 준수
+- [x] `hooks/useTodos.ts` — `useQuery(['todos', filters])`, 필터 변경 시 자동 재조회
+- [x] `hooks/useTodo.ts` — `useQuery(['todos', id])`
+- [x] `hooks/useTodoMutations.ts` — `useCreateTodo`, `useUpdateTodo`, `useDeleteTodo`, `useToggleTodoDone` — 성공 시 `['todos']` 캐시 무효화
+- [x] `hooks/useCategories.ts` — `useQuery(['categories'])`
+- [x] `hooks/useCategoryMutations.ts` — `useCreateCategory`, `useUpdateCategory`, `useDeleteCategory` — 성공 시 캐시 무효화
+- [x] Query key 구조 N-04 컨벤션 준수
 
 **의존성**
-- [ ] FE-04 완료
+- [x] FE-04 완료
 
 ---
 
@@ -443,14 +443,14 @@ DB-03         BE-03               FE-03
 **목표**: 할일 목록·카드·폼·상태 배지 컴포넌트를 구현한다.
 
 **완료 조건**
-- [ ] `components/todo/StatusBadge.tsx` — 4가지 status 색상 구분 배지 (NOT_STARTED/IN_PROGRESS/DONE/OVERDUE)
-- [ ] `components/todo/TodoCard.tsx` — 제목, 상태 배지, 카테고리, 날짜 표시, 완료 토글 버튼, 수정/삭제 버튼
-- [ ] `components/todo/TodoList.tsx` — TodoCard 목록 렌더링, 빈 상태 메시지
-- [ ] `components/todo/TodoForm.tsx` — title, description, category select, start_date, end_date 입력, 날짜 순서 유효성 검사
+- [x] `components/todo/StatusBadge.tsx` — 4가지 status 색상 구분 배지 (NOT_STARTED/IN_PROGRESS/DONE/OVERDUE)
+- [x] `components/todo/TodoCard.tsx` — 제목, 상태 배지, 카테고리, 날짜 표시, 완료 토글 버튼, 수정/삭제 버튼
+- [x] `components/todo/TodoList.tsx` — TodoCard 목록 렌더링, 빈 상태 메시지
+- [x] `components/todo/TodoForm.tsx` — title, description, category select, start_date, end_date 입력, 날짜 순서 유효성 검사
 
 **의존성**
-- [ ] FE-08 완료
-- [ ] FE-10 완료
+- [x] FE-08 완료
+- [x] FE-10 완료
 
 ---
 
@@ -459,12 +459,12 @@ DB-03         BE-03               FE-03
 **목표**: 카테고리 필터와 폼 컴포넌트를 구현한다.
 
 **완료 조건**
-- [ ] `components/category/CategoryFilter.tsx` — 카테고리 탭/버튼 목록, 선택된 카테고리 `uiStore`에 저장
-- [ ] `components/category/CategoryForm.tsx` — name 입력 폼, 생성/수정 모드 분기, 기본 카테고리 수정 비활성화
+- [x] `components/category/CategoryFilter.tsx` — 카테고리 탭/버튼 목록, 선택된 카테고리 `uiStore`에 저장
+- [x] `components/category/CategoryForm.tsx` — name 입력 폼, 생성/수정 모드 분기, 기본 카테고리 수정 비활성화
 
 **의존성**
-- [ ] FE-08 완료
-- [ ] FE-10 완료
+- [x] FE-08 완료
+- [x] FE-10 완료
 
 ---
 
@@ -473,15 +473,15 @@ DB-03         BE-03               FE-03
 **목표**: 할일 목록 조회, 카테고리 필터, 상태 필터가 통합된 메인 화면을 구현한다.
 
 **완료 조건**
-- [ ] `pages/DashboardPage.tsx` — 카테고리 사이드바 + 상태 필터 탭 + TodoList 조합
-- [ ] 카테고리 선택/상태 필터 변경 시 `useTodos` 재조회 (자동)
-- [ ] 할일 완료 토글 — `useToggleTodoDone` 호출 후 목록 갱신
-- [ ] 할일 삭제 — Modal 확인 후 `useDeleteTodo` 호출
-- [ ] 반응형: `>= 1024px` 사이드바 + 메인 2단, `< 1024px` 단일 컬럼
+- [x] `pages/DashboardPage.tsx` — 카테고리 사이드바 + 상태 필터 탭 + TodoList 조합
+- [x] 카테고리 선택/상태 필터 변경 시 `useTodos` 재조회 (자동)
+- [x] 할일 완료 토글 — `useToggleTodoDone` 호출 후 목록 갱신
+- [x] 할일 삭제 — Modal 확인 후 `useDeleteTodo` 호출
+- [x] 반응형: `>= 1024px` 사이드바 + 메인 2단, `< 1024px` 단일 컬럼
 
 **의존성**
-- [ ] FE-11 완료
-- [ ] FE-12 완료
+- [x] FE-11 완료
+- [x] FE-12 완료
 
 ---
 
@@ -490,13 +490,13 @@ DB-03         BE-03               FE-03
 **목표**: 할일 CRUD 화면을 완성한다.
 
 **완료 조건**
-- [ ] `pages/TodoCreatePage.tsx` — TodoForm으로 신규 생성, 성공 시 `/` 이동
-- [ ] `pages/TodoEditPage.tsx` — `useTodo(id)`로 기존 데이터 프리필, 수정 후 상세 페이지 이동
-- [ ] `pages/TodoDetailPage.tsx` — 전체 필드 표시, status 배지, 완료 처리 버튼, 수정/삭제 버튼
-- [ ] 타인 할일 접근 시 403 → 홈으로 리다이렉트
+- [x] `pages/TodoCreatePage.tsx` — TodoForm으로 신규 생성, 성공 시 `/` 이동
+- [x] `pages/TodoEditPage.tsx` — `useTodo(id)`로 기존 데이터 프리필, 수정 후 상세 페이지 이동
+- [x] `pages/TodoDetailPage.tsx` — 전체 필드 표시, status 배지, 완료 처리 버튼, 수정/삭제 버튼
+- [x] 타인 할일 접근 시 403 → 홈으로 리다이렉트
 
 **의존성**
-- [ ] FE-13 완료
+- [x] FE-13 완료
 
 ---
 
@@ -505,12 +505,12 @@ DB-03         BE-03               FE-03
 **목표**: 카테고리 목록, 생성, 수정, 삭제 화면을 구현한다.
 
 **완료 조건**
-- [ ] `pages/CategoryPage.tsx` — 카테고리 목록 + 생성 폼 + 수정/삭제 버튼
-- [ ] 기본 카테고리(`is_default=true`) 수정/삭제 버튼 비활성화 처리
-- [ ] 삭제 시 Modal 확인 후 실행
+- [x] `pages/CategoryPage.tsx` — 카테고리 목록 + 생성 폼 + 수정/삭제 버튼
+- [x] 기본 카테고리(`is_default=true`) 수정/삭제 버튼 비활성화 처리
+- [x] 삭제 시 Modal 확인 후 실행
 
 **의존성**
-- [ ] FE-12 완료
+- [x] FE-12 완료
 
 ---
 
@@ -519,14 +519,14 @@ DB-03         BE-03               FE-03
 **목표**: 테마·언어 변경, 이름·비밀번호 수정, 회원 탈퇴 화면을 구현한다.
 
 **완료 조건**
-- [ ] `pages/SettingsPage.tsx` — 이름 수정, 비밀번호 변경, 다크/라이트 모드 토글, 언어 선택(ko/en), 회원 탈퇴 버튼
-- [ ] 테마 토글 — `userApi.updateSettings({ theme })` 호출 + `authStore` 업데이트 + `data-theme` 즉시 적용
-- [ ] 언어 변경 — `userApi.updateSettings({ locale })` 호출 + `i18n.changeLanguage()` 즉시 적용
-- [ ] 회원 탈퇴 — 비밀번호 재확인 Modal 후 `authController.deleteMe` 호출, 성공 시 `clearAuth` + `/login` 이동
+- [x] `pages/SettingsPage.tsx` — 이름 수정, 비밀번호 변경, 다크/라이트 모드 토글, 언어 선택(ko/en), 회원 탈퇴 버튼
+- [x] 테마 토글 — `userApi.updateSettings({ theme })` 호출 + `authStore` 업데이트 + `data-theme` 즉시 적용
+- [x] 언어 변경 — `userApi.updateSettings({ locale })` 호출 + `i18n.changeLanguage()` 즉시 적용
+- [x] 회원 탈퇴 — 비밀번호 재확인 Modal 후 `authController.deleteMe` 호출, 성공 시 `clearAuth` + `/login` 이동
 
 **의존성**
-- [ ] FE-09 완료
-- [ ] BE-09 완료
+- [x] FE-09 완료
+- [x] BE-09 완료
 
 ---
 

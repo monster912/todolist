@@ -1,0 +1,141 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "back": "Back",
+    "loading": "Loading...",
+    "confirm": "Confirm",
+    "close": "Close",
+    "all": "All",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "auth": {
+    "login": "Log In",
+    "register": "Sign Up",
+    "logout": "Log Out",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "8+ chars with letters and numbers",
+    "newPasswordPlaceholder": "Enter new password",
+    "namePlaceholder": "Enter your name",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "registerLink": "Sign up",
+    "loginLink": "Log in",
+    "errors": {
+      "invalidCredentials": "Invalid email or password.",
+      "duplicateEmail": "Email is already in use.",
+      "invalidEmail": "Please enter a valid email address.",
+      "passwordTooShort": "Password must be at least 8 characters.",
+      "passwordRequiresAlphanumeric": "Password must contain letters and numbers.",
+      "nameTooLong": "Name must be 50 characters or less.",
+      "nameRequired": "Please enter your name.",
+      "emailRequired": "Please enter your email.",
+      "passwordRequired": "Please enter your password.",
+      "currentPasswordRequired": "Please enter your current password."
+    }
+  },
+  "todo": {
+    "title": "Title",
+    "description": "Description",
+    "category": "Category",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "titlePlaceholder": "Enter todo title",
+    "descriptionPlaceholder": "Enter description (optional)",
+    "create": "Create Todo",
+    "edit": "Edit Todo",
+    "delete": "Delete Todo",
+    "complete": "Mark as Done",
+    "empty": "No todos found.",
+    "emptyFiltered": "No todos match the filter.",
+    "status": {
+      "NOT_STARTED": "Not Started",
+      "IN_PROGRESS": "In Progress",
+      "DONE": "Done",
+      "OVERDUE": "Overdue"
+    },
+    "filter": {
+      "all": "All",
+      "NOT_STARTED": "Not Started",
+      "IN_PROGRESS": "In Progress",
+      "DONE": "Done",
+      "OVERDUE": "Overdue"
+    },
+    "confirmDelete": "Delete this todo?",
+    "deleteDescription": "This action cannot be undone.",
+    "errors": {
+      "titleRequired": "Please enter a title.",
+      "titleTooLong": "Title must be 200 characters or less.",
+      "endDateBeforeStart": "End date must be on or after start date.",
+      "forbidden": "You do not have access to this todo."
+    }
+  },
+  "category": {
+    "name": "Category Name",
+    "namePlaceholder": "Category name (1–50 chars)",
+    "create": "Add Category",
+    "edit": "Edit Category",
+    "delete": "Delete Category",
+    "default": "Default",
+    "all": "All",
+    "confirmDelete": "Delete this category?",
+    "deleteDescription": "Todos in this category will be moved to 'Default'.",
+    "errors": {
+      "nameRequired": "Please enter a category name.",
+      "nameTooLong": "Name must be 50 characters or less.",
+      "duplicate": "A category with this name already exists.",
+      "cannotEditDefault": "The default category cannot be edited.",
+      "cannotDeleteDefault": "The default category cannot be deleted."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "profileSection": "Profile",
+    "securitySection": "Security",
+    "appearanceSection": "Theme & Language",
+    "dangerSection": "Account",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "theme": "Theme",
+    "themeLight": "Light Mode",
+    "themeDark": "Dark Mode",
+    "locale": "Language",
+    "localeKo": "한국어",
+    "localeEn": "English",
+    "deleteAccount": "Delete Account",
+    "deleteAccountDescription": "Deleting your account will permanently remove all your data.",
+    "deleteAccountConfirm": "Are you sure you want to delete your account?",
+    "passwordForDelete": "Enter your password to confirm.",
+    "saveProfile": "Save Profile",
+    "savePassword": "Change Password"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "categories": "Categories",
+    "settings": "Settings",
+    "logout": "Log Out"
+  },
+  "errors": {
+    "UNAUTHORIZED": "Authentication required.",
+    "FORBIDDEN": "Access denied.",
+    "NOT_FOUND": "Resource not found.",
+    "VALIDATION_ERROR": "Please check your input.",
+    "DUPLICATE_EMAIL": "Email is already in use.",
+    "DUPLICATE_CATEGORY": "A category with this name already exists.",
+    "INTERNAL_ERROR": "Server error. Please try again later.",
+    "INVALID_CREDENTIALS": "Invalid email or password.",
+    "networkError": "Please check your network connection.",
+    "unknown": "An unknown error occurred."
+  }
+}
